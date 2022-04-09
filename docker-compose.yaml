@@ -12,35 +12,6 @@ services:
       - alterra
     volumes:
       - ./volumes:/example
-  
-  # app2:
-  #   image: springboot-helloworld
-  #   container_name: app2
-  #   external_links:
-  #     - postrgesql2:postgresql2
-  #   ports:
-  #     - "8081:8080"
-  #   networks:
-  #     - alterra
-
-  # app3:
-  #   image: springboot-helloworld
-  #   container_name: app3
-  #   external_links:
-  #     - postrgesql2:postgresql2
-  #   ports:
-  #     - "8082:8080"
-  #   networks:
-  #     - alterra
-
-  # nodejs:
-  #   image: piinalpin/sample-node-web-app
-  #   container_name: nodejs
-  #   ports:
-  #     - "8083:8080"
-  #   networks:
-  #     - alterra
-
 networks:
   alterra:
     external: true
