@@ -5,7 +5,20 @@ Repository ini dibuat untuk materi pengenalan docker dan membuat `docker images`
 Membuat `docker images` dengan `Dockerfile`.
 
 ```dockerfile
-Write dockerfile command here
+# Import base JDK from Linux
+FROM adoptopenjdk/openjdk11:alpine
+
+# Set work directory
+WORKDIR /app
+
+# Copy application files
+COPY target/*.jar app.jar
+
+# Expose PORT
+EXPOSE 8080
+
+# Run application
+ENTRYPOINT ["java", "-jar", "app.jar"]
 ```
 
 Menjalankan perintah build
@@ -42,6 +55,13 @@ Agar container dapat di akses pada host OS maka diperlukan expose port pada cont
 
 ```bash
 docker run -p <HOST_PORT>:<CONTAINER_PORT> --name <CONTAINER_NAME>:<TAG> -d <IMAGE_NAME>
+```
+
+### Menggunakan ENV File
+Agar konfigurasi database tidak bergantung pada build aplikasi yaitu dengan menggunakan argument `--env-file`
+
+```bash
+docker run --name <CONTAINER_NAME> -p <HOST_PORT>:<CONTAINER_PORT> --env-file <FILE_ENV> -d <IMAGE_NAME>
 ```
 
 ### Melihat Stats Penggunaan Memori
