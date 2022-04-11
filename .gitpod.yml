@@ -1,0 +1,7 @@
+# Select image from Dockerfile
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - init: mvn clean install -Dmaven.test.skip=true
+# Command to start on workspace startup
