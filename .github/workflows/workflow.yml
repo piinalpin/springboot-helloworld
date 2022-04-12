@@ -3,7 +3,7 @@ name: Spring Boot Hello World Pipeline
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   install_vim:
