@@ -2,6 +2,6 @@
 image:
   file: .gitpod.Dockerfile
 
+# Command to start on workspace startup
 tasks:
   - init: mvn clean install -Dmaven.test.skip=true
-# Command to start on workspace startup
