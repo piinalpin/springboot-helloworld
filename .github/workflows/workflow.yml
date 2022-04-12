@@ -11,9 +11,9 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - run: echo "Starting execute unit test"
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup JDK 11
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
           java-version: 11
           distribution: 'adopt'
@@ -22,19 +22,21 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-18.04
+    needs: run_test
     steps:
       - run: echo "Starting build package"
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup JDK 11
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
           java-version: 11
           distribution: 'adopt'
       - name: Maven Build
-        run: mvn clean install -Dmaven.test.skip=true
+        run: mvn clean package -Dmaven.test.skip=true
   build_image:
     name: Build Image
     runs-on: ubuntu-18.04
+    needs: build
     steps:
       - run: echo "Starting build image"
       - name: Login to docker hub
@@ -51,6 +53,7 @@ jobs:
   deployment:
     name: Deploy container using SSH
     runs-on: ubuntu-18.04
+    needs: build_image
     steps:
       - uses: actions/checkout@v2
       - name: Deploy using ssh
