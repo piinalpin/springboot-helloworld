@@ -4,8 +4,7 @@
   become: yes
   tasks:
     - name: Updating server
-      yum:
-        state: latest
+      command: yum update -y
     - name: Removing any installed docker
       yum:
         name:
@@ -37,7 +36,11 @@
       systemd:
         name: docker
         state: started
+    - name: Check docker network
+      command: docker network ls -q -f name={{default_docker_network}}
+      register: docker_network_check
     - name: Create docker network
       command: docker network create {{default_docker_network}}
+      when: docker_network_check.stdout == ''
     - name: Create PostgreSQL container
       command: docker run --name {{postgres_constainer_name}} --network {{default_docker_network}} -d -e POSTGRES_PASSWORD={{postgres_db_password}} -e POSTGRES_DB={{postgres_db_name}} -p {{postgres_publish_port}}:5432 {{postgres_image_name}}
