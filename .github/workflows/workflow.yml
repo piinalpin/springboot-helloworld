@@ -47,7 +47,7 @@ jobs:
   deployment:
     name: Deploy container using SSH
     runs-on: ubuntu-18.04
-    needs: build_image
+    needs: build
     steps:
       - run: echo "Starting deploy container"
       - uses: actions/checkout@v3
