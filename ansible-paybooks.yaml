@@ -1,0 +1,43 @@
+- name: Setup Instance for Deployment (RPM Linux Based) Playbooks
+  hosts: all
+  gather_facts: yes
+  become: yes
+  tasks:
+    - name: Updating server
+      yum:
+        state: latest
+    - name: Removing any installed docker
+      yum:
+        name:
+          - docker
+          - docker-client
+          - docker-client-latest
+          - docker-common
+          - docker-latest
+          - docker-latest-logrotate
+          - docker-logrotate
+          - docker-engine
+        state: absent
+    - name: Installing docker engine
+      yum:
+        name: docker
+        state: latest
+    - name: Add docker group
+      group:
+        name: docker
+        state: present
+    - name: Add $USER to docker group
+      user:
+        name: '{{ ansible_user }}'
+        groups: docker
+        append: yes
+    - name: Do a ssh reset in order to reflect the $USER group changes
+      meta: reset_connection
+    - name: Start docker service
+      systemd:
+        name: docker
+        state: started
+    - name: Create docker network
+      command: docker network create {{default_docker_network}}
+    - name: Create PostgreSQL container
+      command: docker run --name {{postgres_constainer_name}} --network {{default_docker_network}} -d -e POSTGRES_PASSWORD={{postgres_db_password}} -e POSTGRES_DB={{postgres_db_name}} -p {{postgres_publish_port}}:5432 {{postgres_image_name}}

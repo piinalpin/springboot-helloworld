@@ -69,7 +69,6 @@ jobs:
           key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
           script: |
             docker stop springboot-helloworld
-            docker rm springboot-helloworld
             docker rmi piinalpin/springboot-helloworld:latest
             docker pull piinalpin/springboot-helloworld:latest
-            docker run -d --name springboot-helloworld -p 80:8080 --env-file=.dev.env --network kampus_merdeka piinalpin/springboot-helloworld:latest
+            docker run -d -rm --name springboot-helloworld -p 80:8080 -p 443:8080 --env-file=.dev.env --network kampus_merdeka piinalpin/springboot-helloworld:latest
