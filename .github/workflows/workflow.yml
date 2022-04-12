@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           java-version: 11
-          distribution: adopt
+          distribution: 'adopt'
       - name: Maven Verify
         run: mvn clean verify
   build:
@@ -27,7 +27,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           java-version: 11
-          distribution: adopt
+          distribution: 'adopt'
       - name: Maven Build
         run: mvn clean install -Dmaven.test.skip=true
   build_image:
