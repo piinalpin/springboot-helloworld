@@ -14,10 +14,10 @@ jobs:
       - name: Deploy using ssh
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secret.EC2_SSH_HOST }}
+          host: ${{ secrets.EC2_SSH_HOST }}
           port: 22
-          username: ${{ secret.EC2_SSH_USERNAME }}
-          key: ${{ secret.EC2_SSH_PRIVATE_KEY }}
+          username: ${{ secrets.EC2_SSH_USERNAME }}
+          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
           script: |
             sudo yum update
             sudo yum install -y vim
