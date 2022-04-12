@@ -61,5 +61,6 @@ jobs:
           script: |
             docker stop springboot-helloworld
             docker rm springboot-helloworld
+            docker rmi piinalpin/springboot-helloworld:latest
             docker pull piinalpin/springboot-helloworld:latest
             docker run -d --name springboot-helloworld -p 80:8080 piinalpin/springboot-helloworld:latest
