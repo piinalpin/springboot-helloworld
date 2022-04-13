@@ -1,5 +1,12 @@
-## Kampus Merdeka Academy - Pengenalan Docker
-Repository ini dibuat untuk materi pengenalan docker dan membuat `docker images` pada aplikasi spring boot serta menjalankan container.
+## Spring Boot Helloworld
+
+Repository ini dibuat sebagai dokumentasi untuk kebutuhan :
+- Belajar menggunakan `docker` pada aplikasi spring boot
+- Belajar provisioning VPS menggunakan `ansible` agar persiapan server dapat dilakukan secara otomatis
+- Belajar membuat sebuah cloud IDE `Open VSCode` menggunakan `gitpod` yang dapat diakses melalui web browser
+- Belajar membuat pipeline pada sebuah aplikasi mulai dari `Unit Testing` hingga `Deployment`
+    
+    ![Pipeline](/images/pipeline.png)
 
 ### Build Images
 Membuat `docker images` dengan `Dockerfile`.
@@ -30,7 +37,7 @@ docker build -t <IMAGE_NAME>:<TAG> .
 Menjalankan container dengan menggunakan perintah `docker run`.
 
 ```bash
-docker run --name <CONTAINER_NAME>:<TAG> -d <IMAGE_NAME>
+docker run --name <CONTAINER_NAME>:<TAG> -d --rm <IMAGE_NAME>
 ```
 
 ### Melihat List Container
