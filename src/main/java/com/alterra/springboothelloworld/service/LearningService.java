@@ -29,7 +29,7 @@ public class LearningService {
         Learning learning = Learning.builder()
             .material(request.getMaterial())
             .build();
-        learningRepository.save(learning);
+        learning = learningRepository.save(learning);
         return ResponseUtil.build("Success", learning, HttpStatus.OK);
     }
     
