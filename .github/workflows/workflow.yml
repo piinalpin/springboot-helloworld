@@ -84,5 +84,5 @@ jobs:
             docker rmi piinalpin/springboot-helloworld:latest piinalpin/springboot-helloworld-coverage:latest
             docker pull piinalpin/springboot-helloworld:latest
             docker pull piinalpin/springboot-helloworld-coverage:latest
-            docker run -d --rm --name springboot-helloworld -p 8000:80 piinalpin/springboot-helloworld-coverage:latest
+            docker run -d --rm --name springboot-helloworld-coverage -p 8000:80 piinalpin/springboot-helloworld-coverage:latest
             docker run -d --rm --name springboot-helloworld -p 80:8080 --env-file=.dev.env --network kampus_merdeka piinalpin/springboot-helloworld:latest
