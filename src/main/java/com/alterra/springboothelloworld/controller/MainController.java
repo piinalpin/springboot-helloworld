@@ -19,6 +19,7 @@ public class MainController {
 
     @GetMapping("/")
     public ResponseEntity<Object> hello() {
+        log.info("Add feature management user");
         return mainService.main();
     }
     
