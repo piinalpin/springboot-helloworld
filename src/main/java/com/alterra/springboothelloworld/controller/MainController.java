@@ -21,5 +21,11 @@ public class MainController {
     public ResponseEntity<Object> hello() {
         return mainService.main();
     }
+
+    @GetMapping("/team")
+    public ResponseEntity<Object> team() {
+        log.info("Add management team");
+        return mainService.main();
+    }
     
 }
